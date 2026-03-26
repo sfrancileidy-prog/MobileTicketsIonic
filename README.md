@@ -6,10 +6,10 @@ erDiagram
     TICKETS {
         int id PK
         string codigo
-        string tipo
+        enum tipo
         datetime data_emissao
         datetime data_chamada
-        string status
+        enum status
     }
 
     GUICHES {
