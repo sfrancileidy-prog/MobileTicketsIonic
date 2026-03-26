@@ -1,10 +1,14 @@
 {
   "name": "mobileticketsionic",
   "version": "1.0.0",
-  "description": "```mermaid erDiagram",
+  "description": "Projeto MobileTicketsIonic usando Express + Prisma",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "prisma:generate": "npx prisma generate",
+    "prisma:studio": "npx prisma studio"
   },
   "repository": {
     "type": "git",
@@ -13,12 +17,21 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/ricardoo-azevedo/MobileTicketsIonic/issues"
   },
   "homepage": "https://github.com/ricardoo-azevedo/MobileTicketsIonic#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "@prisma/client": "^7.5.0"
+  },
+  "devDependencies": {
+    "prisma": "^7.5.0",
+    "install": "^0.13.0",
+    "npm": "^11.12.1",
+    "nodemon": "^3.0.2"
+  },
+  "prisma": {
+    "schema": "src/prisma/schema.prisma"
   }
 }
