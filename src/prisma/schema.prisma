@@ -1,0 +1,19 @@
+datasource db {
+  provider = "mysql"
+}
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated" 
+}
+
+
+model Ticket {
+  id                Int       @id @default(autoincrement())
+  codigo            String
+  // tipo              Tipo
+  dataEmissao       DateTime
+  dataChamada       DateTime?
+}
+
+
