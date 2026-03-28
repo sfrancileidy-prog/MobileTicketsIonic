@@ -28,18 +28,24 @@ export type AggregateAtendimento = {
 
 export type AtendimentoAvgAggregateOutputType = {
   id: number | null
+  ticketId: number | null
+  guicheId: number | null
   tempoPrevisto: number | null
   tempoReal: number | null
 }
 
 export type AtendimentoSumAggregateOutputType = {
   id: number | null
+  ticketId: number | null
+  guicheId: number | null
   tempoPrevisto: number | null
   tempoReal: number | null
 }
 
 export type AtendimentoMinAggregateOutputType = {
   id: number | null
+  ticketId: number | null
+  guicheId: number | null
   dataInicio: Date | null
   dataFim: Date | null
   tempoPrevisto: number | null
@@ -48,6 +54,8 @@ export type AtendimentoMinAggregateOutputType = {
 
 export type AtendimentoMaxAggregateOutputType = {
   id: number | null
+  ticketId: number | null
+  guicheId: number | null
   dataInicio: Date | null
   dataFim: Date | null
   tempoPrevisto: number | null
@@ -56,6 +64,8 @@ export type AtendimentoMaxAggregateOutputType = {
 
 export type AtendimentoCountAggregateOutputType = {
   id: number
+  ticketId: number
+  guicheId: number
   dataInicio: number
   dataFim: number
   tempoPrevisto: number
@@ -66,18 +76,24 @@ export type AtendimentoCountAggregateOutputType = {
 
 export type AtendimentoAvgAggregateInputType = {
   id?: true
+  ticketId?: true
+  guicheId?: true
   tempoPrevisto?: true
   tempoReal?: true
 }
 
 export type AtendimentoSumAggregateInputType = {
   id?: true
+  ticketId?: true
+  guicheId?: true
   tempoPrevisto?: true
   tempoReal?: true
 }
 
 export type AtendimentoMinAggregateInputType = {
   id?: true
+  ticketId?: true
+  guicheId?: true
   dataInicio?: true
   dataFim?: true
   tempoPrevisto?: true
@@ -86,6 +102,8 @@ export type AtendimentoMinAggregateInputType = {
 
 export type AtendimentoMaxAggregateInputType = {
   id?: true
+  ticketId?: true
+  guicheId?: true
   dataInicio?: true
   dataFim?: true
   tempoPrevisto?: true
@@ -94,6 +112,8 @@ export type AtendimentoMaxAggregateInputType = {
 
 export type AtendimentoCountAggregateInputType = {
   id?: true
+  ticketId?: true
+  guicheId?: true
   dataInicio?: true
   dataFim?: true
   tempoPrevisto?: true
@@ -189,6 +209,8 @@ export type AtendimentoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 
 export type AtendimentoGroupByOutputType = {
   id: number
+  ticketId: number
+  guicheId: number
   dataInicio: Date
   dataFim: Date | null
   tempoPrevisto: number
@@ -220,33 +242,47 @@ export type AtendimentoWhereInput = {
   OR?: Prisma.AtendimentoWhereInput[]
   NOT?: Prisma.AtendimentoWhereInput | Prisma.AtendimentoWhereInput[]
   id?: Prisma.IntFilter<"Atendimento"> | number
+  ticketId?: Prisma.IntFilter<"Atendimento"> | number
+  guicheId?: Prisma.IntFilter<"Atendimento"> | number
   dataInicio?: Prisma.DateTimeFilter<"Atendimento"> | Date | string
   dataFim?: Prisma.DateTimeNullableFilter<"Atendimento"> | Date | string | null
   tempoPrevisto?: Prisma.IntFilter<"Atendimento"> | number
   tempoReal?: Prisma.IntNullableFilter<"Atendimento"> | number | null
+  ticket?: Prisma.XOR<Prisma.TicketScalarRelationFilter, Prisma.TicketWhereInput>
+  guiche?: Prisma.XOR<Prisma.GuicheScalarRelationFilter, Prisma.GuicheWhereInput>
 }
 
 export type AtendimentoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  ticketId?: Prisma.SortOrder
+  guicheId?: Prisma.SortOrder
   dataInicio?: Prisma.SortOrder
   dataFim?: Prisma.SortOrderInput | Prisma.SortOrder
   tempoPrevisto?: Prisma.SortOrder
   tempoReal?: Prisma.SortOrderInput | Prisma.SortOrder
+  ticket?: Prisma.TicketOrderByWithRelationInput
+  guiche?: Prisma.GuicheOrderByWithRelationInput
 }
 
 export type AtendimentoWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  ticketId?: number
   AND?: Prisma.AtendimentoWhereInput | Prisma.AtendimentoWhereInput[]
   OR?: Prisma.AtendimentoWhereInput[]
   NOT?: Prisma.AtendimentoWhereInput | Prisma.AtendimentoWhereInput[]
+  guicheId?: Prisma.IntFilter<"Atendimento"> | number
   dataInicio?: Prisma.DateTimeFilter<"Atendimento"> | Date | string
   dataFim?: Prisma.DateTimeNullableFilter<"Atendimento"> | Date | string | null
   tempoPrevisto?: Prisma.IntFilter<"Atendimento"> | number
   tempoReal?: Prisma.IntNullableFilter<"Atendimento"> | number | null
-}, "id">
+  ticket?: Prisma.XOR<Prisma.TicketScalarRelationFilter, Prisma.TicketWhereInput>
+  guiche?: Prisma.XOR<Prisma.GuicheScalarRelationFilter, Prisma.GuicheWhereInput>
+}, "id" | "ticketId">
 
 export type AtendimentoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  ticketId?: Prisma.SortOrder
+  guicheId?: Prisma.SortOrder
   dataInicio?: Prisma.SortOrder
   dataFim?: Prisma.SortOrderInput | Prisma.SortOrder
   tempoPrevisto?: Prisma.SortOrder
@@ -263,6 +299,8 @@ export type AtendimentoScalarWhereWithAggregatesInput = {
   OR?: Prisma.AtendimentoScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AtendimentoScalarWhereWithAggregatesInput | Prisma.AtendimentoScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Atendimento"> | number
+  ticketId?: Prisma.IntWithAggregatesFilter<"Atendimento"> | number
+  guicheId?: Prisma.IntWithAggregatesFilter<"Atendimento"> | number
   dataInicio?: Prisma.DateTimeWithAggregatesFilter<"Atendimento"> | Date | string
   dataFim?: Prisma.DateTimeNullableWithAggregatesFilter<"Atendimento"> | Date | string | null
   tempoPrevisto?: Prisma.IntWithAggregatesFilter<"Atendimento"> | number
@@ -274,10 +312,14 @@ export type AtendimentoCreateInput = {
   dataFim?: Date | string | null
   tempoPrevisto: number
   tempoReal?: number | null
+  ticket: Prisma.TicketCreateNestedOneWithoutAtendimentoInput
+  guiche: Prisma.GuicheCreateNestedOneWithoutAtendimentosInput
 }
 
 export type AtendimentoUncheckedCreateInput = {
   id?: number
+  ticketId: number
+  guicheId: number
   dataInicio: Date | string
   dataFim?: Date | string | null
   tempoPrevisto: number
@@ -289,10 +331,14 @@ export type AtendimentoUpdateInput = {
   dataFim?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tempoPrevisto?: Prisma.IntFieldUpdateOperationsInput | number
   tempoReal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ticket?: Prisma.TicketUpdateOneRequiredWithoutAtendimentoNestedInput
+  guiche?: Prisma.GuicheUpdateOneRequiredWithoutAtendimentosNestedInput
 }
 
 export type AtendimentoUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  ticketId?: Prisma.IntFieldUpdateOperationsInput | number
+  guicheId?: Prisma.IntFieldUpdateOperationsInput | number
   dataInicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataFim?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tempoPrevisto?: Prisma.IntFieldUpdateOperationsInput | number
@@ -301,6 +347,8 @@ export type AtendimentoUncheckedUpdateInput = {
 
 export type AtendimentoCreateManyInput = {
   id?: number
+  ticketId: number
+  guicheId: number
   dataInicio: Date | string
   dataFim?: Date | string | null
   tempoPrevisto: number
@@ -316,14 +364,33 @@ export type AtendimentoUpdateManyMutationInput = {
 
 export type AtendimentoUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  ticketId?: Prisma.IntFieldUpdateOperationsInput | number
+  guicheId?: Prisma.IntFieldUpdateOperationsInput | number
   dataInicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataFim?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tempoPrevisto?: Prisma.IntFieldUpdateOperationsInput | number
   tempoReal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
+export type AtendimentoNullableScalarRelationFilter = {
+  is?: Prisma.AtendimentoWhereInput | null
+  isNot?: Prisma.AtendimentoWhereInput | null
+}
+
+export type AtendimentoListRelationFilter = {
+  every?: Prisma.AtendimentoWhereInput
+  some?: Prisma.AtendimentoWhereInput
+  none?: Prisma.AtendimentoWhereInput
+}
+
+export type AtendimentoOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type AtendimentoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  ticketId?: Prisma.SortOrder
+  guicheId?: Prisma.SortOrder
   dataInicio?: Prisma.SortOrder
   dataFim?: Prisma.SortOrder
   tempoPrevisto?: Prisma.SortOrder
@@ -332,12 +399,16 @@ export type AtendimentoCountOrderByAggregateInput = {
 
 export type AtendimentoAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  ticketId?: Prisma.SortOrder
+  guicheId?: Prisma.SortOrder
   tempoPrevisto?: Prisma.SortOrder
   tempoReal?: Prisma.SortOrder
 }
 
 export type AtendimentoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  ticketId?: Prisma.SortOrder
+  guicheId?: Prisma.SortOrder
   dataInicio?: Prisma.SortOrder
   dataFim?: Prisma.SortOrder
   tempoPrevisto?: Prisma.SortOrder
@@ -346,6 +417,8 @@ export type AtendimentoMaxOrderByAggregateInput = {
 
 export type AtendimentoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  ticketId?: Prisma.SortOrder
+  guicheId?: Prisma.SortOrder
   dataInicio?: Prisma.SortOrder
   dataFim?: Prisma.SortOrder
   tempoPrevisto?: Prisma.SortOrder
@@ -354,8 +427,84 @@ export type AtendimentoMinOrderByAggregateInput = {
 
 export type AtendimentoSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  ticketId?: Prisma.SortOrder
+  guicheId?: Prisma.SortOrder
   tempoPrevisto?: Prisma.SortOrder
   tempoReal?: Prisma.SortOrder
+}
+
+export type AtendimentoCreateNestedOneWithoutTicketInput = {
+  create?: Prisma.XOR<Prisma.AtendimentoCreateWithoutTicketInput, Prisma.AtendimentoUncheckedCreateWithoutTicketInput>
+  connectOrCreate?: Prisma.AtendimentoCreateOrConnectWithoutTicketInput
+  connect?: Prisma.AtendimentoWhereUniqueInput
+}
+
+export type AtendimentoUncheckedCreateNestedOneWithoutTicketInput = {
+  create?: Prisma.XOR<Prisma.AtendimentoCreateWithoutTicketInput, Prisma.AtendimentoUncheckedCreateWithoutTicketInput>
+  connectOrCreate?: Prisma.AtendimentoCreateOrConnectWithoutTicketInput
+  connect?: Prisma.AtendimentoWhereUniqueInput
+}
+
+export type AtendimentoUpdateOneWithoutTicketNestedInput = {
+  create?: Prisma.XOR<Prisma.AtendimentoCreateWithoutTicketInput, Prisma.AtendimentoUncheckedCreateWithoutTicketInput>
+  connectOrCreate?: Prisma.AtendimentoCreateOrConnectWithoutTicketInput
+  upsert?: Prisma.AtendimentoUpsertWithoutTicketInput
+  disconnect?: Prisma.AtendimentoWhereInput | boolean
+  delete?: Prisma.AtendimentoWhereInput | boolean
+  connect?: Prisma.AtendimentoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AtendimentoUpdateToOneWithWhereWithoutTicketInput, Prisma.AtendimentoUpdateWithoutTicketInput>, Prisma.AtendimentoUncheckedUpdateWithoutTicketInput>
+}
+
+export type AtendimentoUncheckedUpdateOneWithoutTicketNestedInput = {
+  create?: Prisma.XOR<Prisma.AtendimentoCreateWithoutTicketInput, Prisma.AtendimentoUncheckedCreateWithoutTicketInput>
+  connectOrCreate?: Prisma.AtendimentoCreateOrConnectWithoutTicketInput
+  upsert?: Prisma.AtendimentoUpsertWithoutTicketInput
+  disconnect?: Prisma.AtendimentoWhereInput | boolean
+  delete?: Prisma.AtendimentoWhereInput | boolean
+  connect?: Prisma.AtendimentoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AtendimentoUpdateToOneWithWhereWithoutTicketInput, Prisma.AtendimentoUpdateWithoutTicketInput>, Prisma.AtendimentoUncheckedUpdateWithoutTicketInput>
+}
+
+export type AtendimentoCreateNestedManyWithoutGuicheInput = {
+  create?: Prisma.XOR<Prisma.AtendimentoCreateWithoutGuicheInput, Prisma.AtendimentoUncheckedCreateWithoutGuicheInput> | Prisma.AtendimentoCreateWithoutGuicheInput[] | Prisma.AtendimentoUncheckedCreateWithoutGuicheInput[]
+  connectOrCreate?: Prisma.AtendimentoCreateOrConnectWithoutGuicheInput | Prisma.AtendimentoCreateOrConnectWithoutGuicheInput[]
+  createMany?: Prisma.AtendimentoCreateManyGuicheInputEnvelope
+  connect?: Prisma.AtendimentoWhereUniqueInput | Prisma.AtendimentoWhereUniqueInput[]
+}
+
+export type AtendimentoUncheckedCreateNestedManyWithoutGuicheInput = {
+  create?: Prisma.XOR<Prisma.AtendimentoCreateWithoutGuicheInput, Prisma.AtendimentoUncheckedCreateWithoutGuicheInput> | Prisma.AtendimentoCreateWithoutGuicheInput[] | Prisma.AtendimentoUncheckedCreateWithoutGuicheInput[]
+  connectOrCreate?: Prisma.AtendimentoCreateOrConnectWithoutGuicheInput | Prisma.AtendimentoCreateOrConnectWithoutGuicheInput[]
+  createMany?: Prisma.AtendimentoCreateManyGuicheInputEnvelope
+  connect?: Prisma.AtendimentoWhereUniqueInput | Prisma.AtendimentoWhereUniqueInput[]
+}
+
+export type AtendimentoUpdateManyWithoutGuicheNestedInput = {
+  create?: Prisma.XOR<Prisma.AtendimentoCreateWithoutGuicheInput, Prisma.AtendimentoUncheckedCreateWithoutGuicheInput> | Prisma.AtendimentoCreateWithoutGuicheInput[] | Prisma.AtendimentoUncheckedCreateWithoutGuicheInput[]
+  connectOrCreate?: Prisma.AtendimentoCreateOrConnectWithoutGuicheInput | Prisma.AtendimentoCreateOrConnectWithoutGuicheInput[]
+  upsert?: Prisma.AtendimentoUpsertWithWhereUniqueWithoutGuicheInput | Prisma.AtendimentoUpsertWithWhereUniqueWithoutGuicheInput[]
+  createMany?: Prisma.AtendimentoCreateManyGuicheInputEnvelope
+  set?: Prisma.AtendimentoWhereUniqueInput | Prisma.AtendimentoWhereUniqueInput[]
+  disconnect?: Prisma.AtendimentoWhereUniqueInput | Prisma.AtendimentoWhereUniqueInput[]
+  delete?: Prisma.AtendimentoWhereUniqueInput | Prisma.AtendimentoWhereUniqueInput[]
+  connect?: Prisma.AtendimentoWhereUniqueInput | Prisma.AtendimentoWhereUniqueInput[]
+  update?: Prisma.AtendimentoUpdateWithWhereUniqueWithoutGuicheInput | Prisma.AtendimentoUpdateWithWhereUniqueWithoutGuicheInput[]
+  updateMany?: Prisma.AtendimentoUpdateManyWithWhereWithoutGuicheInput | Prisma.AtendimentoUpdateManyWithWhereWithoutGuicheInput[]
+  deleteMany?: Prisma.AtendimentoScalarWhereInput | Prisma.AtendimentoScalarWhereInput[]
+}
+
+export type AtendimentoUncheckedUpdateManyWithoutGuicheNestedInput = {
+  create?: Prisma.XOR<Prisma.AtendimentoCreateWithoutGuicheInput, Prisma.AtendimentoUncheckedCreateWithoutGuicheInput> | Prisma.AtendimentoCreateWithoutGuicheInput[] | Prisma.AtendimentoUncheckedCreateWithoutGuicheInput[]
+  connectOrCreate?: Prisma.AtendimentoCreateOrConnectWithoutGuicheInput | Prisma.AtendimentoCreateOrConnectWithoutGuicheInput[]
+  upsert?: Prisma.AtendimentoUpsertWithWhereUniqueWithoutGuicheInput | Prisma.AtendimentoUpsertWithWhereUniqueWithoutGuicheInput[]
+  createMany?: Prisma.AtendimentoCreateManyGuicheInputEnvelope
+  set?: Prisma.AtendimentoWhereUniqueInput | Prisma.AtendimentoWhereUniqueInput[]
+  disconnect?: Prisma.AtendimentoWhereUniqueInput | Prisma.AtendimentoWhereUniqueInput[]
+  delete?: Prisma.AtendimentoWhereUniqueInput | Prisma.AtendimentoWhereUniqueInput[]
+  connect?: Prisma.AtendimentoWhereUniqueInput | Prisma.AtendimentoWhereUniqueInput[]
+  update?: Prisma.AtendimentoUpdateWithWhereUniqueWithoutGuicheInput | Prisma.AtendimentoUpdateWithWhereUniqueWithoutGuicheInput[]
+  updateMany?: Prisma.AtendimentoUpdateManyWithWhereWithoutGuicheInput | Prisma.AtendimentoUpdateManyWithWhereWithoutGuicheInput[]
+  deleteMany?: Prisma.AtendimentoScalarWhereInput | Prisma.AtendimentoScalarWhereInput[]
 }
 
 export type NullableIntFieldUpdateOperationsInput = {
@@ -366,33 +515,189 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type AtendimentoCreateWithoutTicketInput = {
+  dataInicio: Date | string
+  dataFim?: Date | string | null
+  tempoPrevisto: number
+  tempoReal?: number | null
+  guiche: Prisma.GuicheCreateNestedOneWithoutAtendimentosInput
+}
+
+export type AtendimentoUncheckedCreateWithoutTicketInput = {
+  id?: number
+  guicheId: number
+  dataInicio: Date | string
+  dataFim?: Date | string | null
+  tempoPrevisto: number
+  tempoReal?: number | null
+}
+
+export type AtendimentoCreateOrConnectWithoutTicketInput = {
+  where: Prisma.AtendimentoWhereUniqueInput
+  create: Prisma.XOR<Prisma.AtendimentoCreateWithoutTicketInput, Prisma.AtendimentoUncheckedCreateWithoutTicketInput>
+}
+
+export type AtendimentoUpsertWithoutTicketInput = {
+  update: Prisma.XOR<Prisma.AtendimentoUpdateWithoutTicketInput, Prisma.AtendimentoUncheckedUpdateWithoutTicketInput>
+  create: Prisma.XOR<Prisma.AtendimentoCreateWithoutTicketInput, Prisma.AtendimentoUncheckedCreateWithoutTicketInput>
+  where?: Prisma.AtendimentoWhereInput
+}
+
+export type AtendimentoUpdateToOneWithWhereWithoutTicketInput = {
+  where?: Prisma.AtendimentoWhereInput
+  data: Prisma.XOR<Prisma.AtendimentoUpdateWithoutTicketInput, Prisma.AtendimentoUncheckedUpdateWithoutTicketInput>
+}
+
+export type AtendimentoUpdateWithoutTicketInput = {
+  dataInicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFim?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoPrevisto?: Prisma.IntFieldUpdateOperationsInput | number
+  tempoReal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  guiche?: Prisma.GuicheUpdateOneRequiredWithoutAtendimentosNestedInput
+}
+
+export type AtendimentoUncheckedUpdateWithoutTicketInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  guicheId?: Prisma.IntFieldUpdateOperationsInput | number
+  dataInicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFim?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoPrevisto?: Prisma.IntFieldUpdateOperationsInput | number
+  tempoReal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+export type AtendimentoCreateWithoutGuicheInput = {
+  dataInicio: Date | string
+  dataFim?: Date | string | null
+  tempoPrevisto: number
+  tempoReal?: number | null
+  ticket: Prisma.TicketCreateNestedOneWithoutAtendimentoInput
+}
+
+export type AtendimentoUncheckedCreateWithoutGuicheInput = {
+  id?: number
+  ticketId: number
+  dataInicio: Date | string
+  dataFim?: Date | string | null
+  tempoPrevisto: number
+  tempoReal?: number | null
+}
+
+export type AtendimentoCreateOrConnectWithoutGuicheInput = {
+  where: Prisma.AtendimentoWhereUniqueInput
+  create: Prisma.XOR<Prisma.AtendimentoCreateWithoutGuicheInput, Prisma.AtendimentoUncheckedCreateWithoutGuicheInput>
+}
+
+export type AtendimentoCreateManyGuicheInputEnvelope = {
+  data: Prisma.AtendimentoCreateManyGuicheInput | Prisma.AtendimentoCreateManyGuicheInput[]
+  skipDuplicates?: boolean
+}
+
+export type AtendimentoUpsertWithWhereUniqueWithoutGuicheInput = {
+  where: Prisma.AtendimentoWhereUniqueInput
+  update: Prisma.XOR<Prisma.AtendimentoUpdateWithoutGuicheInput, Prisma.AtendimentoUncheckedUpdateWithoutGuicheInput>
+  create: Prisma.XOR<Prisma.AtendimentoCreateWithoutGuicheInput, Prisma.AtendimentoUncheckedCreateWithoutGuicheInput>
+}
+
+export type AtendimentoUpdateWithWhereUniqueWithoutGuicheInput = {
+  where: Prisma.AtendimentoWhereUniqueInput
+  data: Prisma.XOR<Prisma.AtendimentoUpdateWithoutGuicheInput, Prisma.AtendimentoUncheckedUpdateWithoutGuicheInput>
+}
+
+export type AtendimentoUpdateManyWithWhereWithoutGuicheInput = {
+  where: Prisma.AtendimentoScalarWhereInput
+  data: Prisma.XOR<Prisma.AtendimentoUpdateManyMutationInput, Prisma.AtendimentoUncheckedUpdateManyWithoutGuicheInput>
+}
+
+export type AtendimentoScalarWhereInput = {
+  AND?: Prisma.AtendimentoScalarWhereInput | Prisma.AtendimentoScalarWhereInput[]
+  OR?: Prisma.AtendimentoScalarWhereInput[]
+  NOT?: Prisma.AtendimentoScalarWhereInput | Prisma.AtendimentoScalarWhereInput[]
+  id?: Prisma.IntFilter<"Atendimento"> | number
+  ticketId?: Prisma.IntFilter<"Atendimento"> | number
+  guicheId?: Prisma.IntFilter<"Atendimento"> | number
+  dataInicio?: Prisma.DateTimeFilter<"Atendimento"> | Date | string
+  dataFim?: Prisma.DateTimeNullableFilter<"Atendimento"> | Date | string | null
+  tempoPrevisto?: Prisma.IntFilter<"Atendimento"> | number
+  tempoReal?: Prisma.IntNullableFilter<"Atendimento"> | number | null
+}
+
+export type AtendimentoCreateManyGuicheInput = {
+  id?: number
+  ticketId: number
+  dataInicio: Date | string
+  dataFim?: Date | string | null
+  tempoPrevisto: number
+  tempoReal?: number | null
+}
+
+export type AtendimentoUpdateWithoutGuicheInput = {
+  dataInicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFim?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoPrevisto?: Prisma.IntFieldUpdateOperationsInput | number
+  tempoReal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ticket?: Prisma.TicketUpdateOneRequiredWithoutAtendimentoNestedInput
+}
+
+export type AtendimentoUncheckedUpdateWithoutGuicheInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  ticketId?: Prisma.IntFieldUpdateOperationsInput | number
+  dataInicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFim?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoPrevisto?: Prisma.IntFieldUpdateOperationsInput | number
+  tempoReal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+export type AtendimentoUncheckedUpdateManyWithoutGuicheInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  ticketId?: Prisma.IntFieldUpdateOperationsInput | number
+  dataInicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFim?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoPrevisto?: Prisma.IntFieldUpdateOperationsInput | number
+  tempoReal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
 
 
 export type AtendimentoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  ticketId?: boolean
+  guicheId?: boolean
   dataInicio?: boolean
   dataFim?: boolean
   tempoPrevisto?: boolean
   tempoReal?: boolean
+  ticket?: boolean | Prisma.TicketDefaultArgs<ExtArgs>
+  guiche?: boolean | Prisma.GuicheDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["atendimento"]>
 
 
 
 export type AtendimentoSelectScalar = {
   id?: boolean
+  ticketId?: boolean
+  guicheId?: boolean
   dataInicio?: boolean
   dataFim?: boolean
   tempoPrevisto?: boolean
   tempoReal?: boolean
 }
 
-export type AtendimentoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dataInicio" | "dataFim" | "tempoPrevisto" | "tempoReal", ExtArgs["result"]["atendimento"]>
+export type AtendimentoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ticketId" | "guicheId" | "dataInicio" | "dataFim" | "tempoPrevisto" | "tempoReal", ExtArgs["result"]["atendimento"]>
+export type AtendimentoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  ticket?: boolean | Prisma.TicketDefaultArgs<ExtArgs>
+  guiche?: boolean | Prisma.GuicheDefaultArgs<ExtArgs>
+}
 
 export type $AtendimentoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Atendimento"
-  objects: {}
+  objects: {
+    ticket: Prisma.$TicketPayload<ExtArgs>
+    guiche: Prisma.$GuichePayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    ticketId: number
+    guicheId: number
     dataInicio: Date
     dataFim: Date | null
     tempoPrevisto: number
@@ -737,6 +1042,8 @@ readonly fields: AtendimentoFieldRefs;
  */
 export interface Prisma__AtendimentoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  ticket<T extends Prisma.TicketDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TicketDefaultArgs<ExtArgs>>): Prisma.Prisma__TicketClient<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  guiche<T extends Prisma.GuicheDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GuicheDefaultArgs<ExtArgs>>): Prisma.Prisma__GuicheClient<runtime.Types.Result.GetResult<Prisma.$GuichePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -767,6 +1074,8 @@ export interface Prisma__AtendimentoClient<T, Null = never, ExtArgs extends runt
  */
 export interface AtendimentoFieldRefs {
   readonly id: Prisma.FieldRef<"Atendimento", 'Int'>
+  readonly ticketId: Prisma.FieldRef<"Atendimento", 'Int'>
+  readonly guicheId: Prisma.FieldRef<"Atendimento", 'Int'>
   readonly dataInicio: Prisma.FieldRef<"Atendimento", 'DateTime'>
   readonly dataFim: Prisma.FieldRef<"Atendimento", 'DateTime'>
   readonly tempoPrevisto: Prisma.FieldRef<"Atendimento", 'Int'>
@@ -788,6 +1097,10 @@ export type AtendimentoFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.AtendimentoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AtendimentoInclude<ExtArgs> | null
+  /**
    * Filter, which Atendimento to fetch.
    */
   where: Prisma.AtendimentoWhereUniqueInput
@@ -806,6 +1119,10 @@ export type AtendimentoFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Exten
    */
   omit?: Prisma.AtendimentoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AtendimentoInclude<ExtArgs> | null
+  /**
    * Filter, which Atendimento to fetch.
    */
   where: Prisma.AtendimentoWhereUniqueInput
@@ -823,6 +1140,10 @@ export type AtendimentoFindFirstArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the Atendimento
    */
   omit?: Prisma.AtendimentoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AtendimentoInclude<ExtArgs> | null
   /**
    * Filter, which Atendimento to fetch.
    */
@@ -872,6 +1193,10 @@ export type AtendimentoFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extens
    */
   omit?: Prisma.AtendimentoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AtendimentoInclude<ExtArgs> | null
+  /**
    * Filter, which Atendimento to fetch.
    */
   where?: Prisma.AtendimentoWhereInput
@@ -919,6 +1244,10 @@ export type AtendimentoFindManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the Atendimento
    */
   omit?: Prisma.AtendimentoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AtendimentoInclude<ExtArgs> | null
   /**
    * Filter, which Atendimentos to fetch.
    */
@@ -968,6 +1297,10 @@ export type AtendimentoCreateArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   omit?: Prisma.AtendimentoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AtendimentoInclude<ExtArgs> | null
+  /**
    * The data needed to create a Atendimento.
    */
   data: Prisma.XOR<Prisma.AtendimentoCreateInput, Prisma.AtendimentoUncheckedCreateInput>
@@ -996,6 +1329,10 @@ export type AtendimentoUpdateArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Omit specific fields from the Atendimento
    */
   omit?: Prisma.AtendimentoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AtendimentoInclude<ExtArgs> | null
   /**
    * The data needed to update a Atendimento.
    */
@@ -1037,6 +1374,10 @@ export type AtendimentoUpsertArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   omit?: Prisma.AtendimentoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AtendimentoInclude<ExtArgs> | null
+  /**
    * The filter to search for the Atendimento to update in case it exists.
    */
   where: Prisma.AtendimentoWhereUniqueInput
@@ -1062,6 +1403,10 @@ export type AtendimentoDeleteArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Omit specific fields from the Atendimento
    */
   omit?: Prisma.AtendimentoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AtendimentoInclude<ExtArgs> | null
   /**
    * Filter which Atendimento to delete.
    */
@@ -1094,4 +1439,8 @@ export type AtendimentoDefaultArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the Atendimento
    */
   omit?: Prisma.AtendimentoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AtendimentoInclude<ExtArgs> | null
 }

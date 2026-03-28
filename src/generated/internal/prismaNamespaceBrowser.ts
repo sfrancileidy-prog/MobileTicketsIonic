@@ -95,6 +95,8 @@ export type GuicheScalarFieldEnum = (typeof GuicheScalarFieldEnum)[keyof typeof 
 
 export const AtendimentoScalarFieldEnum = {
   id: 'id',
+  ticketId: 'ticketId',
+  guicheId: 'guicheId',
   dataInicio: 'dataInicio',
   dataFim: 'dataFim',
   tempoPrevisto: 'tempoPrevisto',

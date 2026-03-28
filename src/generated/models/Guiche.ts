@@ -200,12 +200,14 @@ export type GuicheWhereInput = {
   id?: Prisma.IntFilter<"Guiche"> | number
   nome?: Prisma.StringFilter<"Guiche"> | string
   ativo?: Prisma.BoolFilter<"Guiche"> | boolean
+  atendimentos?: Prisma.AtendimentoListRelationFilter
 }
 
 export type GuicheOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   ativo?: Prisma.SortOrder
+  atendimentos?: Prisma.AtendimentoOrderByRelationAggregateInput
   _relevance?: Prisma.GuicheOrderByRelevanceInput
 }
 
@@ -216,6 +218,7 @@ export type GuicheWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.GuicheWhereInput | Prisma.GuicheWhereInput[]
   nome?: Prisma.StringFilter<"Guiche"> | string
   ativo?: Prisma.BoolFilter<"Guiche"> | boolean
+  atendimentos?: Prisma.AtendimentoListRelationFilter
 }, "id">
 
 export type GuicheOrderByWithAggregationInput = {
@@ -241,23 +244,27 @@ export type GuicheScalarWhereWithAggregatesInput = {
 export type GuicheCreateInput = {
   nome: string
   ativo?: boolean
+  atendimentos?: Prisma.AtendimentoCreateNestedManyWithoutGuicheInput
 }
 
 export type GuicheUncheckedCreateInput = {
   id?: number
   nome: string
   ativo?: boolean
+  atendimentos?: Prisma.AtendimentoUncheckedCreateNestedManyWithoutGuicheInput
 }
 
 export type GuicheUpdateInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   ativo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  atendimentos?: Prisma.AtendimentoUpdateManyWithoutGuicheNestedInput
 }
 
 export type GuicheUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   ativo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  atendimentos?: Prisma.AtendimentoUncheckedUpdateManyWithoutGuicheNestedInput
 }
 
 export type GuicheCreateManyInput = {
@@ -309,16 +316,104 @@ export type GuicheSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
+export type GuicheScalarRelationFilter = {
+  is?: Prisma.GuicheWhereInput
+  isNot?: Prisma.GuicheWhereInput
+}
+
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type GuicheCreateNestedOneWithoutAtendimentosInput = {
+  create?: Prisma.XOR<Prisma.GuicheCreateWithoutAtendimentosInput, Prisma.GuicheUncheckedCreateWithoutAtendimentosInput>
+  connectOrCreate?: Prisma.GuicheCreateOrConnectWithoutAtendimentosInput
+  connect?: Prisma.GuicheWhereUniqueInput
+}
+
+export type GuicheUpdateOneRequiredWithoutAtendimentosNestedInput = {
+  create?: Prisma.XOR<Prisma.GuicheCreateWithoutAtendimentosInput, Prisma.GuicheUncheckedCreateWithoutAtendimentosInput>
+  connectOrCreate?: Prisma.GuicheCreateOrConnectWithoutAtendimentosInput
+  upsert?: Prisma.GuicheUpsertWithoutAtendimentosInput
+  connect?: Prisma.GuicheWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.GuicheUpdateToOneWithWhereWithoutAtendimentosInput, Prisma.GuicheUpdateWithoutAtendimentosInput>, Prisma.GuicheUncheckedUpdateWithoutAtendimentosInput>
+}
+
+export type GuicheCreateWithoutAtendimentosInput = {
+  nome: string
+  ativo?: boolean
+}
+
+export type GuicheUncheckedCreateWithoutAtendimentosInput = {
+  id?: number
+  nome: string
+  ativo?: boolean
+}
+
+export type GuicheCreateOrConnectWithoutAtendimentosInput = {
+  where: Prisma.GuicheWhereUniqueInput
+  create: Prisma.XOR<Prisma.GuicheCreateWithoutAtendimentosInput, Prisma.GuicheUncheckedCreateWithoutAtendimentosInput>
+}
+
+export type GuicheUpsertWithoutAtendimentosInput = {
+  update: Prisma.XOR<Prisma.GuicheUpdateWithoutAtendimentosInput, Prisma.GuicheUncheckedUpdateWithoutAtendimentosInput>
+  create: Prisma.XOR<Prisma.GuicheCreateWithoutAtendimentosInput, Prisma.GuicheUncheckedCreateWithoutAtendimentosInput>
+  where?: Prisma.GuicheWhereInput
+}
+
+export type GuicheUpdateToOneWithWhereWithoutAtendimentosInput = {
+  where?: Prisma.GuicheWhereInput
+  data: Prisma.XOR<Prisma.GuicheUpdateWithoutAtendimentosInput, Prisma.GuicheUncheckedUpdateWithoutAtendimentosInput>
+}
+
+export type GuicheUpdateWithoutAtendimentosInput = {
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  ativo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+export type GuicheUncheckedUpdateWithoutAtendimentosInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  ativo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+
+/**
+ * Count Type GuicheCountOutputType
+ */
+
+export type GuicheCountOutputType = {
+  atendimentos: number
+}
+
+export type GuicheCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  atendimentos?: boolean | GuicheCountOutputTypeCountAtendimentosArgs
+}
+
+/**
+ * GuicheCountOutputType without action
+ */
+export type GuicheCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GuicheCountOutputType
+   */
+  select?: Prisma.GuicheCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * GuicheCountOutputType without action
+ */
+export type GuicheCountOutputTypeCountAtendimentosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AtendimentoWhereInput
+}
 
 
 export type GuicheSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nome?: boolean
   ativo?: boolean
+  atendimentos?: boolean | Prisma.Guiche$atendimentosArgs<ExtArgs>
+  _count?: boolean | Prisma.GuicheCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["guiche"]>
 
 
@@ -330,10 +425,16 @@ export type GuicheSelectScalar = {
 }
 
 export type GuicheOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "ativo", ExtArgs["result"]["guiche"]>
+export type GuicheInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  atendimentos?: boolean | Prisma.Guiche$atendimentosArgs<ExtArgs>
+  _count?: boolean | Prisma.GuicheCountOutputTypeDefaultArgs<ExtArgs>
+}
 
 export type $GuichePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Guiche"
-  objects: {}
+  objects: {
+    atendimentos: Prisma.$AtendimentoPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     nome: string
@@ -678,6 +779,7 @@ readonly fields: GuicheFieldRefs;
  */
 export interface Prisma__GuicheClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  atendimentos<T extends Prisma.Guiche$atendimentosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Guiche$atendimentosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AtendimentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -727,6 +829,10 @@ export type GuicheFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.GuicheOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuicheInclude<ExtArgs> | null
+  /**
    * Filter, which Guiche to fetch.
    */
   where: Prisma.GuicheWhereUniqueInput
@@ -745,6 +851,10 @@ export type GuicheFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.GuicheOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuicheInclude<ExtArgs> | null
+  /**
    * Filter, which Guiche to fetch.
    */
   where: Prisma.GuicheWhereUniqueInput
@@ -762,6 +872,10 @@ export type GuicheFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Guiche
    */
   omit?: Prisma.GuicheOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuicheInclude<ExtArgs> | null
   /**
    * Filter, which Guiche to fetch.
    */
@@ -811,6 +925,10 @@ export type GuicheFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.GuicheOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuicheInclude<ExtArgs> | null
+  /**
    * Filter, which Guiche to fetch.
    */
   where?: Prisma.GuicheWhereInput
@@ -858,6 +976,10 @@ export type GuicheFindManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Guiche
    */
   omit?: Prisma.GuicheOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuicheInclude<ExtArgs> | null
   /**
    * Filter, which Guiches to fetch.
    */
@@ -907,6 +1029,10 @@ export type GuicheCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.GuicheOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuicheInclude<ExtArgs> | null
+  /**
    * The data needed to create a Guiche.
    */
   data: Prisma.XOR<Prisma.GuicheCreateInput, Prisma.GuicheUncheckedCreateInput>
@@ -935,6 +1061,10 @@ export type GuicheUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Guiche
    */
   omit?: Prisma.GuicheOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuicheInclude<ExtArgs> | null
   /**
    * The data needed to update a Guiche.
    */
@@ -976,6 +1106,10 @@ export type GuicheUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.GuicheOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuicheInclude<ExtArgs> | null
+  /**
    * The filter to search for the Guiche to update in case it exists.
    */
   where: Prisma.GuicheWhereUniqueInput
@@ -1002,6 +1136,10 @@ export type GuicheDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.GuicheOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuicheInclude<ExtArgs> | null
+  /**
    * Filter which Guiche to delete.
    */
   where: Prisma.GuicheWhereUniqueInput
@@ -1022,6 +1160,30 @@ export type GuicheDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
+ * Guiche.atendimentos
+ */
+export type Guiche$atendimentosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Atendimento
+   */
+  select?: Prisma.AtendimentoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Atendimento
+   */
+  omit?: Prisma.AtendimentoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AtendimentoInclude<ExtArgs> | null
+  where?: Prisma.AtendimentoWhereInput
+  orderBy?: Prisma.AtendimentoOrderByWithRelationInput | Prisma.AtendimentoOrderByWithRelationInput[]
+  cursor?: Prisma.AtendimentoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AtendimentoScalarFieldEnum | Prisma.AtendimentoScalarFieldEnum[]
+}
+
+/**
  * Guiche without action
  */
 export type GuicheDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1033,4 +1195,8 @@ export type GuicheDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Guiche
    */
   omit?: Prisma.GuicheOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuicheInclude<ExtArgs> | null
 }

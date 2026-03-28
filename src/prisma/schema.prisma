@@ -1,12 +1,11 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "mysql"
+  url      = env("DATABASE_URL")
 }
-
-generator client {
-  provider = "prisma-client"
-  output   = "../generated" 
-}
-
 
 model Ticket {
   id          Int         @id @default(autoincrement())
@@ -15,28 +14,27 @@ model Ticket {
   dataEmissao DateTime
   dataChamada DateTime?
   status      Status
-  // atendimento Atendimento?
+  atendimento Atendimento?
 }
 
 model Guiche {
-  id           Int          @id @default(autoincrement())
-  nome         String
-  ativo        Boolean        @default(true)
-  // atendimentos Atendimento[]
+  id     Int          @id @default(autoincrement())
+  nome   String
+  ativo  Boolean      @default(true)
+  atendimentos Atendimento[]
 }
 
 model Atendimento {
-  id           Int      @id @default(autoincrement())
-  // ticket       Ticket    @relation(fields: [ticketId], references: [id])
-  // ticketId     Int
-  // guiche       Guiche    @relation(fields: [guicheId], references: [id])
-  // guicheId     Int
-  dataInicio   DateTime
-  dataFim      DateTime?
+  id            Int      @id @default(autoincrement())
+  ticket        Ticket   @relation(fields: [ticketId], references: [id])
+  ticketId      Int      @unique
+  guiche        Guiche   @relation(fields: [guicheId], references: [id])
+  guicheId      Int
+  dataInicio    DateTime
+  dataFim       DateTime?
   tempoPrevisto Int
   tempoReal     Int?
 }
-
 
 enum Tipo {
   SP
@@ -49,4 +47,3 @@ enum Status {
   ATENDIDO
   DESCARTADO
 }
-
