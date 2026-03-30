@@ -1,51 +1,49 @@
-const atendimentoRepository = require('../repositories/atendimentoRepository');
-const ticketRepository = require('../repositories/ticketRepository');
+const { PrismaClient } = require('@prisma/client');
+
+const prisma = new PrismaClient();
+
+module.exports = prisma;
 
 class AtendimentoService {
-  constructor() {
-    this.ultimoTipoChamado = null;
-    this.ultimasChamadas = [];
-  }
-
   async chamarProximo(guicheId) {
-    const prioridade = ['SP','SE','SG'];
-    const tiposDisponiveis = prioridade.filter(t => t !== this.ultimoTipoChamado);
-
-    const ticket = await ticketRepository.findNext(tiposDisponiveis);
-    if (!ticket) return null;
-
-    let tempoPrevisto;
-    switch(ticket.tipo) {
-      case 'SP': tempoPrevisto = 10 + Math.floor(Math.random()*11); break; 
-      case 'SG': tempoPrevisto = 2 + Math.floor(Math.random()*7); break;  
-      case 'SE': tempoPrevisto = Math.random() < 0.95 ? 1 : 5; break;
-    }
-
-    const now = new Date();
-
-    const atendimento = await atendimentoRepository.create({
-      ticketId: ticket.id,
-      guicheId,
-      dataInicio: now,
-      tempoPrevisto
+    const atendimento = await prisma.atendimento.findFirst({
+      where: { guicheId, ticket: { status: 'PENDENTE' } },
+      orderBy: { ticket: { dataEmissao: 'asc' } },
+      include: { ticket: true, guiche: true },
     });
 
-    await ticketRepository.update(ticket.id, { status: 'ATENDIDO', dataChamada: now });
+    if (!atendimento) return null;
 
-    this.ultimoTipoChamado = ticket.tipo;
+    await prisma.ticket.update({
+      where: { id: atendimento.ticketId },
+      data: { status: 'EM_ATENDIMENTO', dataChamada: new Date() },
+    });
 
-    this.ultimasChamadas.unshift({ codigo: ticket.codigo, guicheId });
-    if (this.ultimasChamadas.length > 5) this.ultimasChamadas.pop();
+    atendimento.tempoPrevisto = atendimento.ticket.tipo === 'SP' ? 15 : 10;
 
     return atendimento;
   }
 
-  listarUltimasChamadas() {
-    return this.ultimasChamadas;
+  async listarAtendimentos() {
+    return await prisma.atendimento.findMany({
+      include: { ticket: true, guiche: true },
+      orderBy: { dataInicio: 'asc' },
+    });
   }
 
-  async listarAtendimentos() {
-    return atendimentoRepository.findAll();
+  async listarUltimasChamadas() {
+    return await prisma.atendimento.findMany({
+      include: { ticket: true, guiche: true },
+      orderBy: { dataInicio: 'desc' },
+      take: 5,
+    });
+  }
+
+  async limparAtendimentosPendentes() {
+    await prisma.ticket.updateMany({
+      where: { status: 'PENDENTE' },
+      data: { status: 'CANCELADO' },
+    });
   }
 }
 
